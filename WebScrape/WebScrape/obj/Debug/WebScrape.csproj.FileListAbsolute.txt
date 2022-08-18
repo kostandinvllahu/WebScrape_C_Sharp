@@ -1,0 +1,11 @@
+C:\Users\vllah\source\repos\WebScrape\WebScrape\bin\Debug\WebScrape.exe.config
+C:\Users\vllah\source\repos\WebScrape\WebScrape\bin\Debug\WebScrape.exe
+C:\Users\vllah\source\repos\WebScrape\WebScrape\bin\Debug\WebScrape.pdb
+C:\Users\vllah\source\repos\WebScrape\WebScrape\bin\Debug\HtmlAgilityPack.dll
+C:\Users\vllah\source\repos\WebScrape\WebScrape\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\vllah\source\repos\WebScrape\WebScrape\bin\Debug\HtmlAgilityPack.xml
+C:\Users\vllah\source\repos\WebScrape\WebScrape\obj\Debug\WebScrape.csprojAssemblyReference.cache
+C:\Users\vllah\source\repos\WebScrape\WebScrape\obj\Debug\WebScrape.csproj.CoreCompileInputs.cache
+C:\Users\vllah\source\repos\WebScrape\WebScrape\obj\Debug\WebScrape.csproj.CopyComplete
+C:\Users\vllah\source\repos\WebScrape\WebScrape\obj\Debug\WebScrape.exe
+C:\Users\vllah\source\repos\WebScrape\WebScrape\obj\Debug\WebScrape.pdb
