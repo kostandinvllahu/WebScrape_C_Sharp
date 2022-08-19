@@ -9,3 +9,4 @@ C:\Users\vllah\source\repos\WebScrape\WebScrape\obj\Debug\WebScrape.csproj.CoreC
 C:\Users\vllah\source\repos\WebScrape\WebScrape\obj\Debug\WebScrape.csproj.CopyComplete
 C:\Users\vllah\source\repos\WebScrape\WebScrape\obj\Debug\WebScrape.exe
 C:\Users\vllah\source\repos\WebScrape\WebScrape\obj\Debug\WebScrape.pdb
+C:\Users\vllah\source\repos\WebScrape\WebScrape\obj\Debug\WebScrape.csproj.ResolveComReference.cache
