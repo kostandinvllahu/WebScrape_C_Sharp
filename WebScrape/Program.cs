@@ -16,23 +16,23 @@ namespace WebScrape
     {
         static void Main(string[] args)
         {
-
-            Console.WriteLine("====WELCOME TO GOOGLE SERP SCRAPER====");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("==========================GOOGLE SEARCH SCRAPER V1.0==========================");
             int totalpages = 0;
             string search = "";
             Console.WriteLine("What you are looking for?");
             search = Console.ReadLine();
-            Console.WriteLine("Enter number of pages to scrape: ");
+            Console.WriteLine("Enter number of the page to scrape: ");
             totalpages = Convert.ToInt32(Console.ReadLine());
-            
-            
-        
-                var results = ScrapeSerp(search, totalpages);
 
-                foreach (var result in results)
-                {
-                 
-                }
+
+
+            var results = ScrapeSerp(search, totalpages);
+
+            foreach (var result in results)
+            {
+
+            }
             Console.WriteLine("Scrapping is finished successfully!");
             Console.WriteLine("Press ANY key to close the terminal...");
             Console.ReadKey();
@@ -51,7 +51,7 @@ namespace WebScrape
                     "AppleWebKit/537.36 (KHTML, like Gecko)" +
                     "Chrome/74.0.3729.169 Safari/537.36";
                 var htmlDoc = web.Load(url);
-             
+
                 List<string> lines = new List<string>();
                 string dot = ".";
                 int count = 0;
@@ -61,14 +61,36 @@ namespace WebScrape
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
                 Workbook wb;
                 Worksheet ws;
+
+                object misValue = System.Reflection.Missing.Value;
+                var excelFile = new Application();
+                wb = excel.Workbooks.Open(path);
+                wb.Close();
                 wb = excel.Workbooks.Open(path);
                 ws = wb.Worksheets[1];
+                int last = ws.Cells.SpecialCells(XlCellType.xlCellTypeLastCell, Type.Missing).Row;
 
-                var excelFile = new Application();
+                Range rowrange = ws.get_Range("A1:A" + last);
+                foreach (Range element in rowrange.Cells)
+                {
+                    if (element.Value2 != null)
+                    {
+                        count += 1;
+                        count2 += 1;
+                        count3 += 1;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+
+
                 Workbook workbook = excelFile.Workbooks.Open(path);
                 Worksheet worksheet = workbook.Worksheets[1];
                 Range range = (Range)worksheet.Range[worksheet.Cells[1, 1], worksheet.Cells[1, 3]];
-                 var xlWorkbook = new ExcelPackage(new FileInfo(@"C:\Users\vllah\Desktop\Data.xlsx"));
+                var xlWorkbook = new ExcelPackage(new FileInfo(@"C:\Users\vllah\Desktop\Data.xlsx"));
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
                 ExcelWorksheet sheet = new ExcelPackage().Workbook.Worksheets.Add("Sheet1");
@@ -79,38 +101,31 @@ namespace WebScrape
                 {
 
                     Range cellrange;
-                   // count += 1;
-                   
-                    cellrange = ws.Range["B:B"];
-                    //Range last = ws.Cells.SpecialCells(XlCellType.xlCellTypeLastCell, Type.Missing);
-                    //cellrange = ws.get_Range("A1", last);
-                    count += 1; // cellrange; //ws.UsedRange.Rows.Count;//cellrange.Row + cellrange.Rows.Count - 1;
+                    count += 1;
                     cellrange = ws.Range["B" + count + ":B" + count];
                     dot += dot;
-                    
                     Regex re = new Regex(@"\s*\+\d+ \d{3}-\d{3}-\d{4}"); //\w{8}, \w{2}, \w[a-zA]{5}
                     var matches = re.Matches(tag.InnerText);
-
                     foreach (Match m in matches)
                     {
                         string[] phone = new[] { m.Value };
                         cellrange.set_Value(XlRangeValueDataType.xlRangeValueDefault, phone);
                     }
-                   
                     if (matches.Count == 0)
                     {
-                        lines.Add("Sorry no phone number found!");
+                        cellrange.set_Value(XlRangeValueDataType.xlRangeValueDefault, "Sorry no phone number found!");
                     }
+
                     Console.WriteLine(dot);
                 }
                 lines.Clear();
-               
+
                 foreach (var tag2 in nodes2)
                 {
                     Range cellrange3;
+
                     
-                    cellrange3 = ws.Range["A:A"];
-                    count3 += 1; // cellrange3.Row + cellrange3.Rows.Count - 1;
+                    count3 += 1; 
                     cellrange3 = ws.Range["A" + count3 + ":A" + count3];
 
                     string[] name = new[] { tag2.InnerText };
@@ -133,7 +148,7 @@ namespace WebScrape
                     }
                     if (matches.Count == 0)
                     {
-                        lines.Add("Sorry no address found!");
+                        cellrange2.set_Value(XlRangeValueDataType.xlRangeValueDefault, "Sorry no address found!");
                     }
                 }
                 try
@@ -145,11 +160,14 @@ namespace WebScrape
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                    Console.WriteLine("To fix this problem open task manager, find Excel and make it  'END TASK' then try again to run the program.");
                 }
             }
 
             return serpResults;
         }
+
+
 
         public class serpResult
         {
